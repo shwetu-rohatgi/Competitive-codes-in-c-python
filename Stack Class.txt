@@ -1,0 +1,32 @@
+#stack class implementation
+class Stack:
+    def __init__(self):
+        self.items = []
+    def isEmpty(self):
+        if len(self.items) == 0:
+            print 'Empty Stack'
+            return True
+        else:
+            print 'Non Empty Stack'
+            return False
+    def push(self,item):
+        self.items.append(item)
+        print self.items
+    def pop(self):
+        if self.isEmpty() == True:
+            print 'stack is empty'
+        else:
+            print 'last element %d popped' % (self.items[-1])
+            del self.items[-1]
+            
+        
+myStack = Stack()
+myStack.pop()
+myStack.push(5)
+myStack.isEmpty()
+myStack.push(10)
+myStack.pop()
+myStack.isEmpty()
+myStack.pop()
+myStack.isEmpty()
+myStack.pop()
