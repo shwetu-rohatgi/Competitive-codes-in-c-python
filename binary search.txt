@@ -1,0 +1,22 @@
+#binary search in python
+def binarysearch(a,item):
+    a.sort() #for sorting the array
+    print a
+    found = False
+    first = 0
+    last = len(a)-1
+    mid = (first+last)/2
+    while first!=(last) and (not found):
+        if item==a[mid]:
+            print 'item found at '+ str(mid+1)
+            found = True
+        elif item<a[mid]:
+            last = mid
+            mid = (first+last)/2
+        elif item>a[mid]:
+            first = mid
+            mid = (first+last)/2
+    if (first==last) and (not found):
+        print 'Searched item not found'
+       
+binarysearch([7,70,3,0,28,10,20,2,40,101,66,4],66)
