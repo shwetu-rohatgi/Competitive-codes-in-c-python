@@ -1,0 +1,16 @@
+#linear search in python
+#a = [1,2,3,4,5,6,10,20,30,40,55,66,77]
+#item = 10
+def linearsearch(a,item):
+    position = 0
+    found = False
+    while position<len(a) and (not found):
+        if a[position]==item:
+            found = True
+            print 'item found at '+ str(position+1)
+        else:
+            position = position+1
+    if position==len(a) and (not found):
+        print 'Seacrched item not found'
+       
+linearsearch([1,2,3,4,5,6,10,20,30,40,55,66,77],54)

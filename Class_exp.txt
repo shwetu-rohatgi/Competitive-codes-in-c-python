@@ -1,0 +1,9 @@
+#class example
+class Python:
+    def __init__(self, name):
+        self.name = name
+    def hello(self):
+        print 'Hi '+ self.name
+        
+p = Python('Shwetanshu')
+p.hello()
