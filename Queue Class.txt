@@ -1,0 +1,35 @@
+#Queue class implementation in python
+class Queue:
+    position = 0
+    def __init__(self):
+        self.items = []
+    def push(self,item):
+        self.items.append(item)
+        print 'item added to queue'
+        print self.items
+    def isEmpty(self):
+        if len(self.items)==0:
+            print 'No item in Queue'
+            return True
+        else:
+            print 'Queue not empty'
+            return False
+    def pop(self):
+        if self.isEmpty()==True:
+            print 'Queue is empty'
+        else:
+            print '%d popped from queue' % (self.items[Queue.position])
+            del self.items[Queue.position]
+            
+myQueue = Queue()
+myQueue.isEmpty()
+myQueue.pop()
+myQueue.push(5)
+myQueue.isEmpty()
+myQueue.push(10)
+myQueue.pop()
+myQueue.isEmpty()
+myQueue.pop()
+myQueue.isEmpty()
+            
+    
