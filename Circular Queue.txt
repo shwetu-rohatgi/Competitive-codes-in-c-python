@@ -1,0 +1,56 @@
+#Circular Queue class implementation in python
+class CirQueue:
+    first = 0
+    last = 0
+    def __init__(self):
+        self.items = []
+        self.maxSize = 6
+    def size(self):
+        if CirQueue.last>=CirQueue.first:
+            return (CirQueue.last-CirQueue.first)
+        return (self.maxSize - (CirQueue.first-CirQueue.last))    
+    def push(self,item):
+        if self.size()>=self.maxSize-1:
+            print 'Queue is full cannot add '+ str(item)
+        else:
+            self.items.append(item)
+            CirQueue.last = (CirQueue.last+1)%self.maxSize
+            print 'item added to Cir queue'
+        self.Queueprint()
+    def isEmpty(self):
+        if len(self.items)==0:
+            print 'No item in Cir Queue'
+            return True
+        else:
+            print 'Cir Queue not empty'
+            return False
+    def pop(self):
+        if self.size()==0:
+            print 'Queue is empty'
+        else:
+            print '%d popped from Cir queue' % (self.items[CirQueue.first])
+            CirQueue.first = (CirQueue.first+1)%self.maxSize
+    def Queueprint(self):
+        print self.items[CirQueue.first:]        
+            
+myQueue = CirQueue()
+myQueue.isEmpty()
+myQueue.pop()
+myQueue.push(5)
+myQueue.isEmpty()
+myQueue.push(10)
+myQueue.pop()
+myQueue.isEmpty()
+myQueue.pop()
+myQueue.isEmpty()
+myQueue.push(10)
+myQueue.push(20)
+myQueue.push(30)
+myQueue.push(40)
+myQueue.push(100)
+myQueue.push(200)
+myQueue.pop()
+myQueue.push(200)
+#myQueue.Queueprint()
+            
+    
