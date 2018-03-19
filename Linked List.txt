@@ -28,8 +28,48 @@ class LinkedList:
         newnode.next = node.next  #in the next of new node pass whats in the address pass the address of previous node
         node.next = newnode #node now points to newnode
         
+    def deleteAt(self,position):
+        count = 1
+        node = self.head
+        if position == 1:
+            self.head = node.next
+            del node
+            print 'Node deleted from %d' % (position)
+        while count!=position:
+            count = count+1
+            prev = node 
+            node = node.next
+        if position > 1 :
+            prev.next = node.next
+            del node
+            print 'Node deleted from %d' % (position)
+    
+    def LengthLL(self):
+        node = self.head
+        count = 0
+        while node:
+            count = count+1
+            node = node.next
+        print "Length of Linked List is: "+str(count)
+        
+    def search(self,element):
+        node = self.head
+        position = 0
+        flag = 0 
+        while node:
+            position = position + 1
+            if node.data==element:
+                print 'Found %d at positon %d in List' % (element, position)
+                flag = 1
+                break
+            node = node.next
+        if (flag == 0):
+            print 'Element not found in the List'
+
+
 mylist = LinkedList()
 #mylist.printList()
+mylist.LengthLL()
 mylist.push(5)
 #mylist.printList()
 mylist.push(10)
@@ -38,3 +78,9 @@ mylist.push(15)
 #mylist.printList()
 mylist.insertAfter(1,20)
 mylist.printList()
+mylist.LengthLL()
+mylist.search(5)
+mylist.deleteAt(3)
+mylist.printList()
+mylist.LengthLL()
+mylist.search(5)
