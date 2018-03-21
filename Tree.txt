@@ -1,0 +1,70 @@
+#tree implementation in python
+def goto(lineNumber) :
+    #global lineNumber	
+    line = lineNumber
+    
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+        
+class Tree:
+    def __init__(self):
+        self.root = None
+        self.stack = []
+    def addNode(self,data):
+        newNode = Node(data)
+        if self.root == None:
+            self.root = newNode
+            #print "Node added"
+        else:
+            prevNode = self.root
+            if prevNode.value > newNode.value:
+                prevNode.left = newNode
+                #print "Node added"
+            else:
+                prevNode.right = newNode
+                #print "Node added"
+    def inOrder(self):
+     
+        # Set current to root of binary tree
+        current = self.root 
+        s = [] # initialze stack
+        done = 0
+     
+        while(not done):
+         
+            # Reach the left most Node of the current Node
+            if current is not None:
+             
+                # Place pointer to a tree node on the stack 
+                # before traversing the node's left subtree
+                s.append(current)
+                current = current.left          
+            # BackTrack from the empty subtree and visit the Node
+            # at the top of the stack; however, if the stack is 
+            # empty you are done
+            else:
+                if(len(s)>0 ):
+                    current = s.pop()
+                    print current.value,
+         
+                    # We have visited the node and its left 
+                    # subtree. Now, it's right subtree's turn
+                    current = current.right 
+                else:
+                    done = 1
+            
+myTree = Tree()
+#myTree.inOrder()
+myTree.addNode(5)
+#myTree.inOrder()
+myTree.addNode(2)
+#myTree.inOrder()
+myTree.addNode(8)
+#myTree.inOrder()
+myTree.addNode(1)
+#myTree.inOrder()
+myTree.addNode(3)
+myTree.inOrder()
