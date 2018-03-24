@@ -1,0 +1,33 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+        
+def printPreOrder(root):
+    if root:
+        print (root.value)
+        printPreOrder(root.left)
+        printPreOrder(root.right)
+        
+def printInOrder(root):
+    if root:
+        printInOrder(root.left)
+        print (root.value)
+        printInOrder(root.right)
+        
+def printPostOrder(root):
+    if root:
+        printPostOrder(root.left)
+        printPostOrder(root.right)
+        print (root.value)
+        
+root = Node(5)
+root.left = Node(2)
+root.right = Node(8)
+root.left.left = Node(1)
+root.left.right = Node(4)
+#printPreOrder(root)
+#printInOrder(root)
+printPostOrder(root)
