@@ -1,0 +1,83 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+        
+def printPreOrder(root):
+    if root:
+        print (root.value)
+        printPreOrder(root.left)
+        printPreOrder(root.right)
+        
+def printInOrder(root):
+    if root:
+        printInOrder(root.left)
+        print (root.value)
+        printInOrder(root.right)
+        
+def printPostOrder(root):
+    if root:
+        printPostOrder(root.left)
+        printPostOrder(root.right)
+        print (root.value)
+        
+def maxDepth(node):
+    if node is None:
+        #print "No tree exists, SIze of Tree is 0"
+        return 0
+    else:
+        leftDepth = maxDepth(node.left)
+        rightDepth = maxDepth(node.right)
+        
+        if(leftDepth>=rightDepth):
+            return (leftDepth+1)
+        else:
+            return (rightDepth+1)
+        
+def heightSubtree(node):
+    if node is None:
+        return 0
+    else:
+        return 1+max(heightSubtree(node.left),heightSubtree(node.right))
+    
+def diameterTree(node):
+    if node is None:
+        return 0
+    else:
+        #first we consider the case for diameter of tree as we pass via root
+        lcount = diameterTree(node.left)
+        rcount = diameterTree(node.right)
+        #case where we don't pass through root to find max diameter of tree
+        lheight = heightSubtree(node.left)
+        rheight = heightSubtree(node.right)
+        return max(lheight+rheight+1, max(lcount,rcount))
+    
+def LevelOrderTraversal(node):
+    h = maxDepth(node)
+    for i in range(1,h+1):
+        printGivenLevel(node,i)
+
+def printGivenLevel(node,level):
+    if node == None:
+        return
+    elif level == 1:
+        print "%d " % (node.value)
+    else:
+        printGivenLevel(node.left,level-1)
+        printGivenLevel(node.right,level-1)
+        
+root = Node(5)
+root.left = Node(2)
+root.right = Node(8)
+root.right.left = Node(7)
+root.left.left = Node(1)
+root.left.right = Node(4)
+root.left.left.left = Node(0)
+#printPreOrder(root)
+#printInOrder(root)
+printPostOrder(root)
+print "Height of tree %d" % (maxDepth(root))
+print "Diameter of tree %d" % (diameterTree(root))
+LevelOrderTraversal(root)

@@ -1,0 +1,87 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+#define N 4
+
+
+//void swap(int a, int b){
+
+//    int temp;
+
+//    temp = a;
+
+//    a = b;
+
+//    b = temp;
+
+//}
+
+
+
+// Function to swap diagonals elements
+
+void reverseDiagonal(int array[][N])
+{
+    
+int i=0, j=N-1;
+    
+while(i<j){
+                
+// For reversing elements of major
+                
+// diagonal.
+                
+swap(array[i][i], array[j][j]);
+                
+// For reversing elements of minor
+                
+// diagonal.
+                
+if(i+j==N-1){
+                    
+swap(array[i][j], array[j][i]);
+                
+}
+                
+i++;
+                
+j--;
+        
+}
+    
+    
+// Print matrix after reversals.
+    
+for (int i = 0; i < N; ++i) {
+        
+for (int j = 0; j < N; ++j)
+            
+printf("%d  ", array[i][j]);
+        
+printf("\n");
+    
+}
+
+}
+
+
+
+// Driver function
+int main()
+{
+    
+int matrix[N][N] = { 1, 2,  3,  4,
+                         
+5, 6,  7,  8,
+                         
+9, 10, 11, 12,
+                        
+13, 14, 15, 16 };
+    
+reverseDiagonal(matrix);
+     
+    
+return 0;
+
+}
