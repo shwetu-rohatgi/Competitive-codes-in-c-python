@@ -1,0 +1,176 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.value = key
+        
+def printPreOrder(root):
+    if root:
+        print (root.value)
+        printPreOrder(root.left)
+        printPreOrder(root.right)
+        
+def printInOrder(root):
+    if root:
+        printInOrder(root.left)
+        print (root.value)
+        printInOrder(root.right)
+        
+def printPostOrder(root):
+    if root:
+        printPostOrder(root.left)
+        printPostOrder(root.right)
+        print (root.value)
+        
+def maxDepth(node):
+    if node is None:
+        #print "No tree exists, SIze of Tree is 0"
+        return 0
+    else:
+        leftDepth = maxDepth(node.left)
+        rightDepth = maxDepth(node.right)
+        
+        if(leftDepth>=rightDepth):
+            return (leftDepth+1)
+        else:
+            return (rightDepth+1)
+        
+def heightSubtree(node):
+    if node is None:
+        return 0
+    else:
+        return 1+max(heightSubtree(node.left),heightSubtree(node.right))
+    
+def diameterTree(node):
+    if node is None:
+        return 0
+    else:
+        #first we consider the case for diameter of tree as we pass via root
+        lcount = diameterTree(node.left)
+        rcount = diameterTree(node.right)
+        #case where we don't pass through root to find max diameter of tree
+        lheight = heightSubtree(node.left)
+        rheight = heightSubtree(node.right)
+        return max(lheight+rheight+1, max(lcount,rcount))
+    
+def LevelOrderTraversal(node):
+    h = maxDepth(node)
+    for i in range(1,h+1):
+        printGivenLevel(node,i)
+
+def printGivenLevel(node,level):
+    if node == None:
+        return
+    elif level == 1:
+        print "%d " % (node.value)
+    else:
+        printGivenLevel(node.left,level-1)
+        printGivenLevel(node.right,level-1)
+        
+def LevelOrderQueue(node):
+    if node == None:
+        return
+    else:
+        q = []
+        q.append(node)
+        #run till queue is not empty
+        while(len(q)>0):
+            print q[0].value
+            #node enqueue of child nodes
+            node = q.pop(0)
+            if node.left is not None:
+                q.append(node.left)
+            if node.right is not None:
+                q.append(node.right)
+                
+def diagonalTraversal(node):
+    if node is None:
+        return
+    else:
+        q1 = []
+        q1.append(node)
+        while node.left!=None:
+            node = node.left
+            q1.append(node)  
+        #for i in q1:
+         #   print i.value
+        q2 = []
+        q3 = []
+        counter = len(q1)
+        while(len(q1)>0):
+            print q1[0].value
+            node = q1.pop(0)
+            while node.right is not None:
+                node = node.right
+                q2.append(node)
+                if node is not None:
+                    newnode = node.left
+                    q3.append(newnode)       
+            while len(q2)>0:
+                print q2[0].value
+                node = q2.pop(0)
+            if len(q3)>0 and len(q1) == counter-2:
+                for i in q3:
+                    if i is not None:
+                        print i.value
+                        q3.pop()
+                    else:
+                        q3.pop()
+
+total = 0   #this is how you tackle static variable problmes in pyt                     
+def SumLeafNodes(node,sums = 0):
+    global total
+    if node == None:
+        return
+    elif node:
+        #prev = node
+        if node.left is None and node.right is None:
+            sums = sums + node.value
+            total = total + sums
+            #node = prev
+        SumLeafNodes(node.left,sums)
+        SumLeafNodes(node.right,sums)
+
+Total_nodes = 0  #this is how you tackle static variable problmes in pyt      
+def SizeofTree(node):
+    global Total_nodes
+    if node:
+        Total_nodes = Total_nodes + 1
+        SizeofTree(node.left)
+        SizeofTree(node.right)
+
+maxVal = 0       #this is how you tackle static variable problmes in python 
+def maxValueNode(node):
+    global maxVal
+    if node:
+        if node.value > maxVal:
+            maxVal = node.value
+            #print maxVal
+        maxValueNode(node.left)
+        maxValueNode(node.right)
+    return maxVal
+    
+root = Node(5)
+root.left = Node(2)
+root.right = Node(8)
+root.right.right = Node(12)
+#root.right.right.left = Node(10)
+#root.right.right.right = Node(15)
+root.right.left = Node(7)
+root.left.left = Node(1)
+root.left.right = Node(4)
+#root.left.left.left = Node(0)
+#printPreOrder(root)
+#printInOrder(root)
+printPostOrder(root)
+print "Height of tree %d" % (maxDepth(root))
+print "Diameter of tree %d" % (diameterTree(root))
+#LevelOrderTraversal(root)
+#LevelOrderQueue(root)
+#diagonalTraversal(root)
+SumLeafNodes(root)
+print "Sum of all leaf nodes: " + str(total)
+SizeofTree(root)
+print "Number of nodes in Tree: " + str(Total_nodes)
+print "Max Value of node in Tree: " + str(maxValueNode(root))
