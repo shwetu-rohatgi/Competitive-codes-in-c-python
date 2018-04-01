@@ -1,0 +1,51 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+        
+def InOrderTraversal(root):  #inorder traversal prints node values in ascending order.
+    if root:
+        InOrderTraversal(root.left)
+        print (root.data)
+        InOrderTraversal(root.right)
+        
+def insertNode(root,node):
+    if node is None:
+        print "Tree is empty lets insert a root"
+        root = node
+    else:
+        if root.data > node.data:
+            if root.left is None:
+                root.left = node
+            else:
+                insertNode(root.left, node)
+        elif root.data < node.data:
+            if root.right is None:
+                root.right = node
+            else:
+                insertNode(root.right, node)
+                
+def SearchNode(root, data):
+    if root is None:
+        print "Data Not Found!"
+        return
+    else:
+        if data == root.data:
+            print "Data found"
+        elif (data < root.data):
+            SearchNode(root.left,data)
+        elif (data > root.data):
+            SearchNode(root.right,data)
+                
+root = Node(10)
+insertNode(root, Node(7))
+insertNode(root, Node(5))
+insertNode(root, Node(15))
+insertNode(root, Node(20))
+insertNode(root, Node(9))
+insertNode(root, Node(12))
+InOrderTraversal(root)
+SearchNode(root, 25)
+SearchNode(root, 12)
