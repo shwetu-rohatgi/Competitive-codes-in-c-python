@@ -1,0 +1,72 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+        
+def InOrderTraversal(root):  #inorder traversal prints node values in ascending order.
+    if root:
+        InOrderTraversal(root.left)
+        print (root.data)
+        InOrderTraversal(root.right)
+        
+def insertNode(root,node):
+    if node is None:
+        print "Tree is empty lets insert a root"
+        root = node
+    else:
+        if root.data > node.data:
+            if root.left is None:
+                root.left = node
+            else:
+                insertNode(root.left, node)
+        elif root.data < node.data:
+            if root.right is None:
+                root.right = node
+            else:
+                insertNode(root.right, node)
+                
+def SearchNode(root, data):
+    if root is None:
+        print "Data Not Found!"
+        return
+    else:
+        if data == root.data:
+            print "Data found"
+        elif (data < root.data):
+            SearchNode(root.left,data)
+        elif (data > root.data):
+            SearchNode(root.right,data)
+            
+def deleteNode(root,node):
+    if root is None:
+        print "node doesn't exist"
+        return
+    else:
+        #both left and right nodes are empty and we are deleting leaf node.
+        if node.left is None and node.right is None:
+            node = None
+        #either of left or right nodes are empty and we are deleting a non leaf node.
+        elif (node.left is None and node.right is not None):
+            while node.right:
+                node = node.right
+       	elif(node.right is None and node.left is not None):
+            while node.left:
+                node = node.left
+        #either of left or right nodes are not empty and we are deleting a non leaf node with 2 child.
+        else:
+            q = []
+            if node:
+                
+            
+root = Node(10)
+insertNode(root, Node(7))
+insertNode(root, Node(5))
+insertNode(root, Node(15))
+insertNode(root, Node(20))
+insertNode(root, Node(9))
+insertNode(root, Node(12))
+InOrderTraversal(root)
+SearchNode(root, 25)
+SearchNode(root, 12)

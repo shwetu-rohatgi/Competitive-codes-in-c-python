@@ -1,0 +1,40 @@
+# Write your code here
+#import sys
+t = int(input())
+#isinstance(t, int)
+if t<=10 and t>=1:
+    arr = []
+    for i in range(t):
+        arr.append(input())
+        #print arr[i]
+
+    for string in arr:
+        lcount = 0
+        ucount = 0
+        if len(string) == 0 or len(string)>100:
+            print ("Invalid Input")
+            break
+        else:    
+            for j in string:
+                if j.isupper():
+                        ucount+=1
+                elif j.islower():
+                        lcount+=1
+            
+            if(lcount == 0 and ucount == 0):
+                print ("Invalid Input")
+                continue
+            elif((lcount == 0 and ucount!=0) or (ucount == 0 and lcount!=0)):
+                print ("0")
+                continue
+            #elif((lcount == 1 and ucount > 1) or (ucount == 1 and lcount > 1)):
+                #print ("0")
+                #continue
+            elif(lcount >= ucount):
+                print ('%d' % ucount)
+                continue
+            elif(ucount > lcount):
+                print ('%d' % lcount)
+                continue
+else:
+    print ("Invalid Test")
