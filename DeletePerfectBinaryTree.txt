@@ -1,0 +1,101 @@
+#tree implementation in python    
+class Node:
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+        
+def InOrderTraversal(root):  #inorder traversal prints node values in ascending order.
+    if root:
+        InOrderTraversal(root.left)
+        print (root.data)
+        InOrderTraversal(root.right)
+        
+def InOrderQueue(root, q):  #inorder traversal prints node values in ascending order.
+    if root:
+        InOrderQueue(root.left, q)
+        q.append(root.data)
+        #print (root.data)
+        InOrderQueue(root.right,q)
+    return q
+
+def insertNode(root,node):
+    if node is None:
+        print "Tree is empty lets insert a root"
+        root = node
+    else:
+        if root.data > node.data:
+            if root.left is None:
+                root.left = node
+            else:
+                insertNode(root.left, node)
+        elif root.data < node.data:
+            if root.right is None:
+                root.right = node
+            else:
+                insertNode(root.right, node)
+                
+def SearchNode(root, data):
+    if root is None:
+        #print "Data Not Found!"
+        return
+    else:
+        if data == root.data:
+            #print "Data found"
+            return root
+        elif (data < root.data):
+            SearchNode(root.left,data)
+        elif (data > root.data):
+            SearchNode(root.right,data)
+            
+def minValNode(node):
+    temp = node
+    while temp.left != None:
+        temp = temp.left
+    return temp
+
+def deleteNode(root,key):
+    if root is None:
+        return root
+    #key value less than root so traverse left subtree
+    elif root.data<key:
+        root.left = deleteNode(root.left,key)
+        #print "1"
+    #key value less than root so traverse left subtree    
+    elif root.data>key:
+        root.right = deleteNode(root.right,key)
+        #print "1"
+    else:
+        #logic for one and only child case
+        if root.left is None:
+            temp = root.right
+            root = None
+            return temp
+        
+        elif root.right is None:
+            temp = root.left
+            root = None
+            return temp
+        #logic for 2 childern node so we find inorder for right sub tree.
+        tempNode = minValNode(root.right)
+        root.data = tempNode.data
+        root.right = deleteNode(root.right,tempNode.data)
+    #once swapping value of root and deletion of that node we need to update root
+    return root
+            
+root = Node(10)
+insertNode(root, Node(7))
+insertNode(root, Node(5))
+insertNode(root, Node(15))
+insertNode(root, Node(20))
+insertNode(root, Node(9))
+insertNode(root, Node(12))
+SearchNode(root, 12)
+InOrderTraversal(root)
+#print (InOrderQueue(root, []))
+root = deleteNode(root, 10)
+#print (InOrderTraversal(root))
+#print (InOrderQueue(root, []))
+InOrderTraversal(root)
+#SearchNode(root, 25)
+#SearchNode(root, 12)
