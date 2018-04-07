@@ -1,0 +1,23 @@
+def longestPrefix(x):
+    longs = ""
+    length = len(x[0])
+    count = 0
+    others = []
+    for string in x:
+        if len(string)<length:
+            length = len(string)
+            longs = string
+    for string in x:
+        count = 0
+        for i in range(0,length):
+            if(string[i] == longs[i]):
+                count = count+1
+            else:
+                if length >	count:
+                    length = count
+    print length
+    longs = longs[0:length]
+    return longs
+
+lists = ["geeksforgeeks", "gaeeks", "geek", "geezer"]
+print(longestPrefix(lists))
