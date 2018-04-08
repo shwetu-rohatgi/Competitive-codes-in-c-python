@@ -1,0 +1,31 @@
+def print123(numbers):
+    for i in numbers:
+        print i
+        print checkDigit(i)
+        if checkDigit(i) == False:
+            numbers.remove(i)
+    numbers.sort()
+    return numbers
+
+def checkDigit(num):
+    #print num
+    digitdict = {'1':0,'2':0,'3':0}
+    while num:
+        digit = num%10
+        num = num/10
+        if digit == 1:
+            digitdict['1'] = 1
+        if digit == 2:
+            digitdict['2'] = 1
+        if digit == 3:
+            digitdict['3'] = 1
+    #print digitdict        
+    if digitdict['1']==1 and digitdict['2']==1 and digitdict['3']==1:
+        return True
+    else:
+        return False
+    
+listNum = [123, 1232, 456, 234, 32145]
+print(print123(listNum))
+
+            

@@ -1,0 +1,27 @@
+def lenMinSubArray(arr,x):
+    arr.sort()
+    flag = 0
+    sums = 0
+    length = len(arr)-1
+    subarray = []
+    while length>=0 and flag==0:
+        subarray.append(arr[length])
+        sums +=arr[length]
+        if sums>=x:
+            flag = 1
+            print len(subarray)
+            return subarray
+        else:
+            length -= 1
+    if flag == 0:
+        return -1
+
+arr = [1, 4, 45, 6, 0, 19]
+x  =  51
+print lenMinSubArray(arr,x)
+#Output: 3
+#Minimum length subarray is {4, 45, 6}
+arr = [1, 2, 4]
+x = 8
+print lenMinSubArray(arr,x)
+#Output : Not Possible
