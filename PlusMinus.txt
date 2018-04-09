@@ -1,0 +1,21 @@
+def plusMinus(arr):
+    count1 = 0  #for positive
+    count2 = 0  #for negative
+    count3 = 0  #for zeros
+    
+    for i in arr:
+        if i>0:
+            count1 += 1
+        elif i<0:
+            count2 += 1
+        elif i==0:
+            count3 += 1
+    counter1 = count1*1.000000/len(arr)*1.0
+    counter1 = str(counter1) + "00000"
+    counter2 = round(count2*1.0/len(arr)*1.0,6)
+    counter3 = round(count3*1.0/len(arr)*1.0,6)
+    print counter1 + "\n" + str(counter2) + "\n" + str(counter3)
+
+
+arr = [-4,3,-9,0,4,1]
+plusMinus(arr)

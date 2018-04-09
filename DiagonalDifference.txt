@@ -1,0 +1,18 @@
+def diagonalDifference(a):
+    length = len(a)
+    primary_sum = 0
+    secondary_sum = 0
+    for i in range(0,length):
+        for j in range(0,length):
+            if i==j:
+                primary_sum += a[i][j]  #sum of primary diagonal
+            if i+j == length-1:
+                secondary_sum += a[i][j]
+    return abs(primary_sum-secondary_sum)
+
+
+n = int(raw_input())
+a = []
+for _ in xrange(n):
+	a.append(map(int, raw_input().rstrip().split()))
+result = diagonalDifference(a)
