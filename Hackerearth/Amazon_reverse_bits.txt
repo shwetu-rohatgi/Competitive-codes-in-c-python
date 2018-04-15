@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+	int t,j;
+	long int x,num,arr[100];
+	//long long int array[100];
+	cin>>t;
+	for(int i=0;i<t;i++){
+	    cin>>x;
+	    arr[i] = x;
+	}
+	//logic for decimal to binary
+	for(int i=0;i<t;i++){
+	    num = arr[i];
+	    int binaryNum[32] = {0};
+	    j=0;
+	    while (num > 0) {
+        // storing remainder in binary array
+        binaryNum[j] = num % 2;
+        num = num / 2;
+        j++;
+        }
+        long int sum = 0;
+        for(j=31;j>=0;j--){
+            sum = sum + pow(2,j) * binaryNum[31-j];
+        }
+        cout<<sum<<endl;
+	}
+	return 0;
+}
