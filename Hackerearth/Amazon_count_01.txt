@@ -1,0 +1,25 @@
+t = int(input("enter no of test"))
+for i in range(0,t): 
+    numbers = list(map(int, input("enter number,n,k").split()))
+    string = ""
+    num = numbers[0]
+    while(num>0):
+        rem = int(num%2)
+        string = string+str(rem)
+        num = int(num/2)
+    #print(string) 
+    string = string[::-1]  #now string is in the binary representation
+    #print(string)
+    #string1 = string
+    for j in range(0,numbers[1]):
+        k=0
+        while k<len(string):
+            if string[k]=="0":
+                string.replace("0","01")
+                k = k + 2
+            elif string[k]=="1":
+                string.replace("1","10")
+                k = k + 2
+    print (string)
+    x = numbers[2]
+    print(string[x-1])
