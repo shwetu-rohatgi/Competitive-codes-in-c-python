@@ -1,0 +1,28 @@
+#!binpython3
+
+import sys
+
+def closestNumbers(arr)
+    arr.sort()
+    sol = []
+    diff = abs(arr[1]-arr[0])
+    sol = [arr[0],arr[1]]
+    for i in range(0, len(arr)-1)
+        if (arr[i+1]-arr[i])<diff
+            diff = arr[i+1]-arr[i]
+            sol = []
+            sol.append(arr[i])
+            sol.append(arr[i+1])
+        elif (arr[i+1]-arr[i])==diff
+            sol.append(arr[i])
+            sol.append(arr[i+1])
+    return sol
+            
+
+if __name__ == __main__
+    n = int(input().strip())
+    arr = list(map(int, input().strip().split(' ')))
+    result = closestNumbers(arr)
+    print ( .join(map(str, result)))
+
+

@@ -1,0 +1,25 @@
+#!/bin/python3
+
+import sys
+
+
+if __name__ == "__main__":
+    n = int(input().strip())
+    strarr = [[] for _ in range(100)]
+    valarr = []
+    count = 0
+    for a0 in range(n):
+        x, s = input().strip().split(' ')
+        x, s = [int(x), str(s)]
+        count += 1
+        if count <= n/2:
+            strarr[x].append('-')
+        else:
+            strarr[x].append(s)
+    for i in range(len(strarr)):
+        for j in range(len(strarr[i])):
+                valarr.append(strarr[i][j])
+    print (*valarr, sep=" ")
+    
+            
+        
