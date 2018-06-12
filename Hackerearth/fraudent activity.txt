@@ -1,0 +1,37 @@
+#!/bin/python3
+
+import sys
+
+def activityNotifications(expenditure, d):
+    x = 0
+    traildata = []
+    traillen = d
+    notice = 0
+    for i in range(x,d):
+            traildata.append(expenditure[i])
+    while d<len(expenditure):
+        traildata.sort()
+        if traillen%2 == 0:
+            high = int(traillen/2)
+            low = high-1
+            medval = ((traildata[low]+traildata[high])/2)
+        elif traillen%2 != 0:
+            index = int((traillen-1)/2)
+            medval = traildata[index]
+        if expenditure[d] >= medval*2:
+            notice += 1
+        x+=1
+        d+=1
+        if d == len(expenditure):
+            return notice
+        else:
+            traildata.append(expenditure[d])
+            del traildata[x-1]
+    
+
+if __name__ == "__main__":
+    n, d = input().strip().split(' ')
+    n, d = [int(n), int(d)]
+    expenditure = list(map(int, input().strip().split(' ')))
+    result = activityNotifications(expenditure, d)
+    print(result)
