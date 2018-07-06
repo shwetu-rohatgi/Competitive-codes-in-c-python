@@ -1,0 +1,37 @@
+#helper function
+def multiplyList(myList) : 
+    # Multiply elements one by one
+    result = 1
+    for x in myList:
+        if x == 0:
+            continue
+        else:
+            result = result * x 
+    return result 
+
+# Greedy Algo to return least possible product of subarray elements
+def min_product(arr):
+    negative_vals = 0
+    zeros = False
+    for items in arr:
+        if items < 0:
+            negative_vals+=1
+        elif items == 0:
+            zeros = True
+    if zeros == True and negative_vals == 0:
+        return 0
+    elif zeros == False and negative_vals == 0:
+        return min(arr)
+    elif negative_vals%2!=0:
+        return multiplyList(arr)
+    elif negative_vals%2==0:
+        new_arr = []
+        for i in arr:
+            if i<0:
+                new_arr.append(i)
+        arr.remove(max(new_arr))
+        #print(arr)
+        return multiplyList(arr)
+
+arrs = [-1,-2,0,6,2]
+print(min_product(arrs))

@@ -1,0 +1,36 @@
+def arr_sum(arrs):
+    result = 0
+    for i in arrs:
+        result += i
+    return result
+def maxsum_arr(arr,k):
+    p_arr = []
+    n_arr = []
+    for num in arr:
+        if num>=0:
+            p_arr.append(num)
+        elif num<0:
+            n_arr.append(num)
+    n_arr.sort()
+    while k>0: 
+        if len(n_arr)!=0:
+            n_arr[-1] = -1*n_arr[-1]
+            p_arr.append(n_arr[-1])
+            n_arr.pop()
+            k-=1
+        #print (n_arr)
+        elif len(n_arr)==0:
+            p_arr.sort()
+            #print (p_arr)
+            if k%2==0 or p_arr[0] == 0:
+                k=0
+                return arr_sum(p_arr)
+            elif k%2!=0:
+                k=0
+                p_arr[0] = -1*p_arr[0]
+                return arr_sum(p_arr)
+            
+arr = [9, 8, 8, -5, 2]
+k = 4
+print(maxsum_arr(arr,k))  
+    
